@@ -1,0 +1,3 @@
+# Cloudflare Pages build & deployment configuration
+# Build output directory: out
+# Build command: npm run build

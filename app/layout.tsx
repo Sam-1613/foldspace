@@ -33,11 +33,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="flex flex-col min-h-screen">
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
           <SiteHeader />
-          <div className="flex flex-1">
+          <div style={{ display: "flex", flex: 1 }}>
             <SiteNav />
-            <main className="flex-1 min-w-0">{children}</main>
+            <main style={{ flex: 1, minWidth: 0, padding: "1.5rem" }}>{children}</main>
           </div>
         </div>
       </body>

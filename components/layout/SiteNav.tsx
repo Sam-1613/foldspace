@@ -9,7 +9,6 @@ import {
   GitBranch,
   Clock,
   Settings,
-  ChevronRight,
 } from "lucide-react";
 
 const navItems = [
@@ -17,7 +16,7 @@ const navItems = [
   {
     label: "PDF Tools",
     icon: FileText,
-    color: "text-pdf-red",
+    color: "#DC2626",
     children: [
       { href: "/pdf/merge", label: "Merge PDF" },
       { href: "/pdf/split", label: "Split PDF" },
@@ -36,7 +35,7 @@ const navItems = [
   {
     label: "Image Studio",
     icon: Image,
-    color: "text-image-purple",
+    color: "#7C3AED",
     children: [
       { href: "/images/edit", label: "Edit Image" },
       { href: "/images/compress", label: "Compress Image" },
@@ -47,13 +46,13 @@ const navItems = [
   {
     label: "File Utilities",
     icon: Archive,
-    color: "text-archive-amber",
+    color: "#D97706",
     children: [
       { href: "/files/zip", label: "Create ZIP" },
       { href: "/files/extract", label: "Extract ZIP" },
     ],
   },
-  { href: "/workflows", label: "Workflows", icon: GitBranch, color: "text-workflow-teal" },
+  { href: "/workflows", label: "Workflows", icon: GitBranch, color: "#0D9488" },
   { href: "/history", label: "History", icon: Clock },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
@@ -67,8 +66,18 @@ export function SiteNav() {
 
   return (
     <nav
-      className="hidden md:flex flex-col w-52 shrink-0 border-r border-linen-300 bg-white pt-3 pb-6 overflow-y-auto"
-      style={{ minHeight: "calc(100vh - 3.5rem)" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "13.5rem",
+        flexShrink: 0,
+        borderRight: "1px solid #E2DDD6",
+        backgroundColor: "#FFFFFF",
+        paddingTop: "0.75rem",
+        paddingBottom: "1.5rem",
+        overflowY: "auto",
+        minHeight: "calc(100vh - 3.5rem)",
+      }}
       aria-label="Main navigation"
     >
       {navItems.map((item) => {
@@ -76,24 +85,43 @@ export function SiteNav() {
         if (item.children) {
           const sectionActive = item.children.some((c) => pathname.startsWith(c.href));
           return (
-            <div key={item.label} className="mb-1">
+            <div key={item.label} style={{ marginBottom: "0.5rem" }}>
               <div
-                className={`flex items-center gap-2 px-3 py-2 text-xs font-semibold uppercase tracking-widest ${
-                  sectionActive ? item.color || "text-accent-600" : "text-ink-400"
-                } mt-2`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.5rem 0.75rem",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  color: sectionActive ? item.color || "#2D6BE4" : "#9E9690",
+                }}
               >
-                <Icon className="w-3.5 h-3.5" />
-                {item.label}
+                <Icon style={{ width: 14, height: 14 }} />
+                <span>{item.label}</span>
               </div>
               {item.children.map((child) => (
                 <Link
                   key={child.href}
                   href={child.href}
-                  className={`flex items-center gap-2 pl-7 pr-3 py-1.5 text-sm rounded mx-2 transition-colors ${
-                    isActive(child.href)
-                      ? "bg-accent-50 text-accent-700 font-medium"
-                      : "text-ink-600 hover:text-ink-900 hover:bg-linen-100"
-                  }`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    paddingLeft: "1.75rem",
+                    paddingRight: "0.75rem",
+                    paddingTop: "0.375rem",
+                    paddingBottom: "0.375rem",
+                    fontSize: "0.875rem",
+                    borderRadius: "6px",
+                    margin: "0 0.5rem 0.125rem",
+                    textDecoration: "none",
+                    fontWeight: isActive(child.href) ? 500 : 400,
+                    backgroundColor: isActive(child.href) ? "#EBF0FC" : "transparent",
+                    color: isActive(child.href) ? "#1E50B5" : "#524D45",
+                    transition: "all 0.15s ease",
+                  }}
                 >
                   {child.label}
                 </Link>
@@ -105,14 +133,23 @@ export function SiteNav() {
           <Link
             key={item.href}
             href={item.href!}
-            className={`flex items-center gap-2.5 px-3 py-2 text-sm rounded mx-2 transition-colors mt-0.5 ${
-              isActive(item.href!, item.exact)
-                ? "bg-accent-50 text-accent-700 font-semibold"
-                : "text-ink-700 hover:text-ink-900 hover:bg-linen-100"
-            }`}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.625rem",
+              padding: "0.5rem 0.75rem",
+              fontSize: "0.875rem",
+              borderRadius: "6px",
+              margin: "0 0.5rem 0.125rem",
+              textDecoration: "none",
+              fontWeight: isActive(item.href!, item.exact) ? 600 : 400,
+              backgroundColor: isActive(item.href!, item.exact) ? "#EBF0FC" : "transparent",
+              color: isActive(item.href!, item.exact) ? "#1E50B5" : "#1C1814",
+              transition: "all 0.15s ease",
+            }}
           >
-            <Icon className={`w-4 h-4 ${item.color || ""}`} />
-            {item.label}
+            <Icon style={{ width: 16, height: 16, color: item.color }} />
+            <span>{item.label}</span>
           </Link>
         );
       })}

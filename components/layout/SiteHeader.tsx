@@ -17,48 +17,105 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-linen-300 h-14 flex items-center px-4 gap-4">
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        backgroundColor: "#FFFFFF",
+        borderBottom: "1px solid #E2DDD6",
+        height: "3.5rem",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 1rem",
+        gap: "1rem",
+      }}
+    >
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-2 shrink-0 group">
-        <span className="w-7 h-7 rounded bg-accent-500 flex items-center justify-center">
+      <Link
+        href="/"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          textDecoration: "none",
+          flexShrink: 0,
+        }}
+      >
+        <span
+          style={{
+            width: "1.75rem",
+            height: "1.75rem",
+            borderRadius: "6px",
+            backgroundColor: "#2D6BE4",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
             <path d="M2 3h7l3 3v7H2V3z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
             <path d="M9 3v3h3" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
           </svg>
         </span>
-        <span className="font-semibold text-ink-950 text-[15px] tracking-tight group-hover:text-accent-600 transition-colors">
+        <span
+          style={{
+            fontWeight: 600,
+            color: "#1C1814",
+            fontSize: "15px",
+            letterSpacing: "-0.01em",
+          }}
+        >
           Foldspace
         </span>
       </Link>
 
       {/* Search */}
-      <form onSubmit={handleSearch} className="flex-1 max-w-sm hidden sm:block">
-        <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-ink-400" />
+      <form onSubmit={handleSearch} style={{ flex: 1, maxWidth: "24rem" }}>
+        <div style={{ position: "relative" }}>
+          <Search
+            style={{
+              position: "absolute",
+              left: "0.625rem",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "14px",
+              height: "14px",
+              color: "#9E9690",
+            }}
+          />
           <input
             type="search"
             placeholder="Search tools…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 text-sm bg-linen-100 border border-linen-300 rounded focus:outline-none focus:ring-2 focus:ring-accent-500 focus:bg-white transition-all"
+            className="input"
+            style={{
+              paddingLeft: "2rem",
+              backgroundColor: "#F5F3EF",
+            }}
           />
         </div>
       </form>
 
-      <div className="flex-1" />
+      <div style={{ flex: 1 }} />
 
-      <Link href="/settings" className="btn-ghost btn-sm hidden sm:flex">
-        <Settings className="w-4 h-4" />
+      <Link
+        href="/settings"
+        className="btn btn-ghost btn-sm"
+        style={{ display: "inline-flex", textDecoration: "none" }}
+      >
+        <Settings style={{ width: 16, height: 16 }} />
         <span>Settings</span>
       </Link>
 
-      {/* Mobile menu toggle */}
       <button
-        className="sm:hidden btn-ghost p-1.5"
+        className="btn btn-ghost"
+        style={{ padding: "0.375rem" }}
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle navigation"
       >
-        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {mobileOpen ? <X style={{ width: 20, height: 20 }} /> : <Menu style={{ width: 20, height: 20 }} />}
       </button>
     </header>
   );
